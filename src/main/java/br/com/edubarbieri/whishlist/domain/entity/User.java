@@ -1,14 +1,23 @@
 package br.com.edubarbieri.whishlist.domain.entity;
 
 import br.com.edubarbieri.whishlist.domain.exception.InvalidEmailException;
+import lombok.Getter;
 
 import java.util.regex.Pattern;
 
+@Getter
 public class User {
     private static final Pattern VALID_EMAIL_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
+    private String id;
     private String name;
     private String email;
+
+    public User(String id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
 
     public User(String name, String email) {
         if(!this.validateEmail(email)){
@@ -23,11 +32,14 @@ public class User {
         return matcher.find();
     }
 
-    public String getName() {
-        return name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public void setEmail(String email) {
+        if(!this.validateEmail(email)){
+            throw new InvalidEmailException();
+        }
+        this.email = email;
     }
 }

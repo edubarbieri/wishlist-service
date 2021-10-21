@@ -5,11 +5,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateUserInput {
+public class UpdateUserInput {
+    private String id;
     private String name;
     private String email;
 
-    public CreateUserInput(String name, String email) {
+    public UpdateUserInput(String id, String name, String email) {
+        this.id = id;
         this.name = name;
         this.email = email;
     }
