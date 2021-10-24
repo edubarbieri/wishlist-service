@@ -3,14 +3,15 @@ package br.com.edubarbieri.whishlist.application.usecase;
 import br.com.edubarbieri.whishlist.application.dto.CreateUserInput;
 import br.com.edubarbieri.whishlist.domain.entity.User;
 import br.com.edubarbieri.whishlist.domain.exception.EmailAlreadyRegistered;
+import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
 import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
 
 public class CreateUser {
 
     private final UserRepository userRepository;
 
-    public CreateUser(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CreateUser(AbstractRepositoryFactory repositoryFactory) {
+        this.userRepository = repositoryFactory.createUserRepository();
     }
 
     public void execute(CreateUserInput input){

@@ -15,14 +15,14 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
-class CreateUserTest extends BaseUseCaseTest{
+class CreateUserTest extends BaseUseCaseTest {
 
     private CreateUser underTest;
 
     @BeforeEach
     void setUp() {
         super.setUp();
-        this.underTest = new CreateUser(this.userRepository);
+        this.underTest = new CreateUser(this.repositoryFactory);
     }
     @Test
     void shouldNotCreateDuplicatedEmailUser() {

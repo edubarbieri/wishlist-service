@@ -21,11 +21,20 @@ public class UserJdbcRepository implements UserRepository {
 
     @Override
     public void save(User user) {
-        if (user.getId() == null) {
+        if (!userExists(user)) {
             insert(user);
             return;
         }
         update(user);
+    }
+
+    private boolean userExists(User user) {
+        if (user.getId() == null) {
+            return false;
+        }
+        return jdbcTemplate
+                .queryForObject("select count(1) from ml_user where id = ?",
+                        Integer.class, user.getId()) > 0;
     }
 
     private void insert(User user) {
