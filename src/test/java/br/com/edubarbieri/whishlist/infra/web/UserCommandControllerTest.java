@@ -16,7 +16,7 @@ class UserCommandControllerTest extends BaseWebTest {
 
     @Test
     void shouldCreateUser() throws Exception {
-        var createUserInput = new CreateUserInput("eduardo", "duduardo23@gmail.com");
+        var createUserInput = new CreateUserInput("eduardo", "duduardo23@gmail.com", "teste12", "teste12");
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -27,7 +27,7 @@ class UserCommandControllerTest extends BaseWebTest {
 
     @Test
     void shouldNotCreateUserWithInvalidEmail() throws Exception {
-        var createUserInput = new CreateUserInput("eduardo", "duduardo23");
+        var createUserInput = new CreateUserInput("eduardo", "duduardo23", "teste12", "teste12");
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)

@@ -27,8 +27,8 @@ class CreateUserTest extends BaseUseCaseTest {
     @Test
     void shouldNotCreateDuplicatedEmailUser() {
         var email = "teste@hotmail.com";
-        when(userRepository.findByEmail(email)).thenReturn(Optional.of(new User("test", email)));
-        var input = new CreateUserInput("eduardo santos", email);
+        when(userRepository.findByEmail(email)).thenReturn(Optional.of(new User("test", email, "pwd")));
+        var input = new CreateUserInput("eduardo santos", email, "pwd", "pwd");
         try {
             underTest.execute(input);
         }catch (DomainException e){
@@ -37,7 +37,7 @@ class CreateUserTest extends BaseUseCaseTest {
     }
     @Test
     void shouldSaveNewUserInRepository() {
-        var input = new CreateUserInput("eduardo santos", "teste@hotmail.com");
+        var input = new CreateUserInput("eduardo santos", "teste@hotmail.com", "pwd", "pwd");
         underTest.execute(input);
         verify(this.userRepository).save(any());
     }

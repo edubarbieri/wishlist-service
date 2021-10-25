@@ -39,9 +39,9 @@ class UpdateUserTest extends BaseUseCaseTest {
     void shouldNotUpdateEmailUsedByOtherUser() {
         var updateUserInput = new UpdateUserInput("user2", "Jorge Santos Silva", "test@test.com");
         when(userRepository.findById("user2"))
-                .thenReturn(Optional.of(new User("user2", "Jorge Santos", "jorge.santos@test.com")));
+                .thenReturn(Optional.of(new User("user2", "Jorge Santos", "jorge.santos@test.com", "password")));
         when(userRepository.findByEmail("test@test.com"))
-                .thenReturn(Optional.of(new User("user1", "junior", "test@test.com")));
+                .thenReturn(Optional.of(new User("user1", "junior", "test@test.com", "password")));
         try {
             underTest.execute(updateUserInput);
             fail("Could not update to email used by other user");
@@ -52,7 +52,7 @@ class UpdateUserTest extends BaseUseCaseTest {
     @Test
     void shouldUpdateUser() {
         var updateUserInput = new UpdateUserInput("user2", "Jorge Santos Silva", "test@test.com");
-        var user = new User("user2", "Jorge Santos", "jorge.santos@test.com");
+        var user = new User("user2", "Jorge Santos", "jorge.santos@test.com", "password");
         when(userRepository.findById("user2"))
                 .thenReturn(Optional.of(user));
 

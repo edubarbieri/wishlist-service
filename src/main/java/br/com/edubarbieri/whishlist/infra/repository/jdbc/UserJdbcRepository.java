@@ -32,24 +32,26 @@ public class UserJdbcRepository implements UserRepository {
         if (user.getId() == null) {
             return false;
         }
-        return jdbcTemplate
+        var queryResult = jdbcTemplate
                 .queryForObject("select count(1) from ml_user where id = ?",
-                        Integer.class, user.getId()) > 0;
+                        Integer.class, user.getId());
+
+        return queryResult > 0;
     }
 
     private void insert(User user) {
-        jdbcTemplate.update("insert into ml_user(name, email) values (?,?)", user.getName(), user.getEmail());
+        jdbcTemplate.update("insert into ml_user(name, email, password) values (?,?,?)", user.getName(), user.getEmail(), user.getPassword());
     }
 
     private void update(User user) {
-        jdbcTemplate.update("update ml_user set name = ?, email = ? where id = ?",
-                user.getName(), user.getEmail(), user.getId());
+        jdbcTemplate.update("update ml_user set name = ?, email = ?, password = ? where id = ?",
+                user.getName(), user.getEmail(), user.getPassword(), user.getId());
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<User> findByEmail(String email) {
-        return queryUser("select id, name, email from ml_user where email = ?", email);
+        return queryUser("select id, name, email, password from ml_user where email = ?", email);
     }
 
     private Optional<User> queryUser(String sql, String parameter) {
@@ -61,13 +63,13 @@ public class UserJdbcRepository implements UserRepository {
     }
 
     private User mapUserRow(ResultSet rs, int rowNum) throws SQLException {
-        return new User(rs.getString("id"), rs.getString("name"), rs.getString("email"));
+        return new User(rs.getString("id"), rs.getString("name"), rs.getString("email"), rs.getString("password"));
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<User> findById(String id) {
-        return queryUser("select id, name, email from ml_user where id = ?", id);
+        return queryUser("select id, name, email, password from ml_user where id = ?", id);
     }
 
     @Override

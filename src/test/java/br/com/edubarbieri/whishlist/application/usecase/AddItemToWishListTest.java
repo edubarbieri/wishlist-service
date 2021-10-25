@@ -7,15 +7,7 @@ import br.com.edubarbieri.whishlist.domain.entity.WishList;
 import br.com.edubarbieri.whishlist.domain.exception.DomainException;
 import br.com.edubarbieri.whishlist.domain.exception.ProductNotFound;
 import br.com.edubarbieri.whishlist.domain.exception.UserNotFound;
-import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
-import br.com.edubarbieri.whishlist.domain.respository.ProductRepository;
-import br.com.edubarbieri.whishlist.domain.respository.WishListRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Optional;
 
@@ -24,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.openMocks;
 
 class AddItemToWishListTest extends BaseUseCaseTest {
 
@@ -33,7 +24,7 @@ class AddItemToWishListTest extends BaseUseCaseTest {
         var underTest = new AddItemToWishList(repositoryFactory);
         var input = new AddItemToWishListInput("user123", "product123");
         when(productRepository.findById("product123")).thenReturn(Optional.empty());
-        when(userRepository.findById("user123")).thenReturn(Optional.of(new User("user123", "teste", "teste@gmail.com")));
+        when(userRepository.findById("user123")).thenReturn(Optional.of(new User("user123", "teste", "teste@gmail.com", "password")));
         try {
             underTest.execute(input);
             fail();
@@ -48,7 +39,7 @@ class AddItemToWishListTest extends BaseUseCaseTest {
         var wishList = new WishList("user123");
         when(productRepository.findById("product123")).thenReturn(Optional.of(new Product("product123")));
         when(wishListRepository.findByUserId("user123")).thenReturn(Optional.of(wishList));
-        when(userRepository.findById("user123")).thenReturn(Optional.of(new User("user123", "teste", "teste@gmail.com")));
+        when(userRepository.findById("user123")).thenReturn(Optional.of(new User("user123", "teste", "teste@gmail.com", "password")));
 
         underTest.execute(input);
 
@@ -62,7 +53,7 @@ class AddItemToWishListTest extends BaseUseCaseTest {
         var input = new AddItemToWishListInput("user123", "product123");
         when(productRepository.findById("product123")).thenReturn(Optional.of(new Product("product123")));
         when(wishListRepository.findByUserId("user123")).thenReturn(Optional.empty());
-        when(userRepository.findById("user123")).thenReturn(Optional.of(new User("user123", "teste", "teste@gmail.com")));
+        when(userRepository.findById("user123")).thenReturn(Optional.of(new User("user123", "teste", "teste@gmail.com", "password")));
 
         underTest.execute(input);
 

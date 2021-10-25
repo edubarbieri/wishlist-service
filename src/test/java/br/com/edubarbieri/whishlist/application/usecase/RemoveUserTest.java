@@ -25,7 +25,7 @@ class RemoveUserTest extends BaseUseCaseTest {
 
     @Test
     void shouldRemoveUser() {
-        var user = new User("user2", "Jorge Santos", "jorge.santos@test.com");
+        var user = new User("user2", "Jorge Santos", "jorge.santos@test.com", "password");
         when(userRepository.findById("user2"))
                 .thenReturn(Optional.of(user));
         underTest.execute("user2");

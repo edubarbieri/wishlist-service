@@ -14,6 +14,9 @@ http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibas
                 <constraints nullable="false" />
             </column>
             <column name="email" type="varchar(250)" >
+                <constraints nullable="false" unique="true" uniqueConstraintName="ml_user_email_unique" />
+            </column>
+            <column name="password" type="varchar(250)" >
                 <constraints nullable="false" />
             </column>
         </createTable>
@@ -27,6 +30,9 @@ http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibas
                 <constraints nullable="false" />
             </column>
             <column name="email" type="varchar(250)" >
+                <constraints nullable="false" unique="true" uniqueConstraintName="ml_user_email_unique"/>
+            </column>
+            <column name="password" type="varchar(250)" >
                 <constraints nullable="false" />
             </column>
         </createTable>

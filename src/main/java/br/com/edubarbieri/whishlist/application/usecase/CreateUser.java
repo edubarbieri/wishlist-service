@@ -18,7 +18,8 @@ public class CreateUser {
         if(userRepository.findByEmail(input.getEmail()).isPresent()){
             throw new EmailAlreadyRegistered(input.getEmail());
         }
-        var user = new User(input.getName(), input.getEmail());
+        //TODO Check if password equal confirmPassword
+        var user = new User(input.getName(), input.getEmail(), input.getPassword());
         this.userRepository.save(user);
     }
 }
