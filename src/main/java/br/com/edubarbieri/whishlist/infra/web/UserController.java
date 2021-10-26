@@ -1,12 +1,9 @@
 package br.com.edubarbieri.whishlist.infra.web;
 
 
-import br.com.edubarbieri.whishlist.application.user.CreateUserInput;
-import br.com.edubarbieri.whishlist.application.user.UpdateUserInput;
-import br.com.edubarbieri.whishlist.application.user.CreateUser;
-import br.com.edubarbieri.whishlist.application.user.DeleteUser;
-import br.com.edubarbieri.whishlist.application.user.UpdateUser;
+import br.com.edubarbieri.whishlist.application.user.*;
 import br.com.edubarbieri.whishlist.domain.exception.DomainException;
+import br.com.edubarbieri.whishlist.domain.exception.UserNotFound;
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -52,6 +50,26 @@ public class UserController {
             return ResponseEntity.ok().build();
         } catch (DomainException d) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, d.getMessage(), d);
+        }
+    }
+
+    @GetMapping(value = "/{userId}")
+    public ResponseEntity<GetUserOutput> getUser(@PathVariable String userId) {
+        try {
+            GetUserOutput user = new GetUser(repositoryFactory).execute(userId);
+            return ResponseEntity.ok(user);
+        } catch (UserNotFound d) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, d.getMessage(), d);
+        }
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<GetUserOutput>> getAllUser() {
+        try {
+            List<GetUserOutput> users = new GetAllUser(repositoryFactory).execute();
+            return ResponseEntity.ok(users);
+        } catch (UserNotFound d) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, d.getMessage(), d);
         }
     }
 }

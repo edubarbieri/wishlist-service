@@ -1,20 +1,15 @@
 package br.com.edubarbieri.whishlist.infra.web;
 
-import br.com.edubarbieri.whishlist.application.dto.AddItemToWishListRequest;
+import br.com.edubarbieri.whishlist.application.dto.ItemWishListRequest;
 import br.com.edubarbieri.whishlist.application.dto.QueryWishListResultItem;
-import br.com.edubarbieri.whishlist.application.wishlist.AddItemToWishList;
-import br.com.edubarbieri.whishlist.application.wishlist.AddItemToWishListInput;
-import br.com.edubarbieri.whishlist.application.wishlist.QueryUserWishList;
+import br.com.edubarbieri.whishlist.application.wishlist.*;
 import br.com.edubarbieri.whishlist.domain.exception.DomainException;
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
 import br.com.edubarbieri.whishlist.infra.security.AuthUserDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
@@ -33,7 +28,7 @@ public class WishListController {
     public ResponseEntity<List<QueryWishListResultItem>> getWishList(Authentication user) {
         try {
             var userId = getUser(user);
-            List<QueryWishListResultItem> result = new QueryUserWishList(repositoryFactory).execute(userId);
+            List<QueryWishListResultItem> result = new GetUserWishList(repositoryFactory).execute(userId);
             return ResponseEntity.ok(result);
         } catch (DomainException d) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, d.getMessage(), d);
@@ -41,7 +36,7 @@ public class WishListController {
     }
 
     @PostMapping("/api/user/wishlist")
-    public ResponseEntity<Void> addItemInWishList(@RequestBody @Valid AddItemToWishListRequest request, Authentication user) {
+    public ResponseEntity<Void> addItemInWishList(@RequestBody @Valid ItemWishListRequest request, Authentication user) {
         try {
             var userId = getUser(user);
             AddItemToWishListInput input = new AddItemToWishListInput(userId, request.getProductId());
@@ -52,7 +47,19 @@ public class WishListController {
         }
     }
 
-    private String getUser(Authentication user){
+    @DeleteMapping("/api/user/wishlist")
+    public ResponseEntity<Void> removeItemFromWishList(@RequestBody @Valid ItemWishListRequest request, Authentication user) {
+        try {
+            var userId = getUser(user);
+            RemoveItemFromWishListInput input = new RemoveItemFromWishListInput(userId, request.getProductId());
+            new RemoveItemFromWishList(repositoryFactory).execute(input);
+            return ResponseEntity.ok().build();
+        } catch (DomainException d) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, d.getMessage(), d);
+        }
+    }
+
+    private String getUser(Authentication user) {
         if (!(user.getPrincipal() instanceof AuthUserDetails)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not get current user");
         }

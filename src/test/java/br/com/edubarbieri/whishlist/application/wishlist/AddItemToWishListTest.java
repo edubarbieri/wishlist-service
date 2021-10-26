@@ -1,6 +1,6 @@
 package br.com.edubarbieri.whishlist.application.wishlist;
 
-import br.com.edubarbieri.whishlist.application.user.BaseUseCaseTest;
+import br.com.edubarbieri.whishlist.application.BaseUseCaseTest;
 import br.com.edubarbieri.whishlist.domain.entity.Product;
 import br.com.edubarbieri.whishlist.domain.entity.User;
 import br.com.edubarbieri.whishlist.domain.entity.WishList;

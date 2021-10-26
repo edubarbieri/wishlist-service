@@ -1,5 +1,6 @@
 package br.com.edubarbieri.whishlist.application.user;
 
+import br.com.edubarbieri.whishlist.application.BaseUseCaseTest;
 import br.com.edubarbieri.whishlist.domain.entity.User;
 import br.com.edubarbieri.whishlist.domain.exception.DomainException;
 import br.com.edubarbieri.whishlist.domain.exception.UserNotFound;
@@ -18,7 +19,7 @@ class RemoveUserTest extends BaseUseCaseTest {
     private DeleteUser underTest;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         super.setUp();
         underTest = new DeleteUser(repositoryFactory);
     }

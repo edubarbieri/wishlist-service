@@ -1,4 +1,4 @@
-package br.com.edubarbieri.whishlist.application.user;
+package br.com.edubarbieri.whishlist.application;
 
 import br.com.edubarbieri.whishlist.application.events.EventRepository;
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
@@ -24,7 +24,7 @@ public abstract class BaseUseCaseTest {
     protected EventRepository eventRepository;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         openMocks(this);
         when(repositoryFactory.createProductRepository()).thenReturn(productRepository);
         when(repositoryFactory.createUserRepository()).thenReturn(userRepository);

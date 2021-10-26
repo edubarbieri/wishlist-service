@@ -6,10 +6,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients
-public class WhishlistServiceApplication {
+public class WishListServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WhishlistServiceApplication.class, args);
+		SpringApplication.run(WishListServiceApplication.class, args);
 	}
 
 }

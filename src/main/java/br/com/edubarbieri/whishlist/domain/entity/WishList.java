@@ -25,5 +25,7 @@ public class WishList {
         }
         this.productsId.add(productId);
     }
-
+    public void removeProduct(String productId){
+        this.productsId.removeIf(p -> p.equals(productId));
+    }
 }

@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @Transactional
@@ -58,7 +60,7 @@ public class UserJdbcRepository implements UserRepository {
         return queryUser("select id, name, email, password from ml_user where email = ?", email);
     }
 
-    private Optional<User> queryUser(String sql, String parameter) {
+    private Optional<User> queryUser(String sql, Object parameter) {
         var result = jdbcTemplate.query(sql, this::mapUserRow, parameter);
         if (result.isEmpty()) {
             return Optional.empty();
@@ -73,7 +75,12 @@ public class UserJdbcRepository implements UserRepository {
     @Override
     @Transactional(readOnly = true)
     public Optional<User> findById(String id) {
-        return queryUser("select id, name, email, password from ml_user where id = ?", id);
+        return queryUser("select id, name, email, password from ml_user where id = CAST(? as uuid)", id);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return jdbcTemplate.query("select id, name, email, password from ml_user", this::mapUserRow);
     }
 
     @Override

@@ -20,9 +20,9 @@ public class WishListJdbcRepository implements WishListRepository {
 
     @Override
     public void save(WishList wishList) {
-        jdbcTemplate.update("delete from ml_user_wishlist where user_id = ?", wishList.getUserId());
+        jdbcTemplate.update("delete from ml_user_wishlist where user_id = CAST(? as uuid)", wishList.getUserId());
         for (var productId : wishList.getProductsId()) {
-            jdbcTemplate.update("insert into ml_user_wishlist(user_id, product_id) values (?, ?)",
+            jdbcTemplate.update("insert into ml_user_wishlist(user_id, product_id) values (CAST(? as uuid), ?)",
                     wishList.getUserId(), productId);
         }
     }
@@ -30,7 +30,7 @@ public class WishListJdbcRepository implements WishListRepository {
     @Override
     @Transactional(readOnly = true)
     public Optional<WishList> findByUserId(String userId) {
-        var queryResult = jdbcTemplate.queryForRowSet("select user_id, product_id from ml_user_wishlist where user_id = ?", userId);
+        var queryResult = jdbcTemplate.queryForRowSet("select user_id, product_id from ml_user_wishlist where user_id = CAST(? as uuid)", userId);
         if (!queryResult.next()) {
             return Optional.empty();
         }

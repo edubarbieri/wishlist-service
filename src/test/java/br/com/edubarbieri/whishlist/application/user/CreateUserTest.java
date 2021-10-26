@@ -1,5 +1,6 @@
 package br.com.edubarbieri.whishlist.application.user;
 
+import br.com.edubarbieri.whishlist.application.BaseUseCaseTest;
 import br.com.edubarbieri.whishlist.domain.entity.User;
 import br.com.edubarbieri.whishlist.domain.exception.DomainException;
 import br.com.edubarbieri.whishlist.domain.exception.EmailAlreadyRegistered;
@@ -16,7 +17,7 @@ class CreateUserTest extends BaseUseCaseTest {
     private CreateUser underTest;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         super.setUp();
         this.underTest = new CreateUser(this.repositoryFactory);
     }

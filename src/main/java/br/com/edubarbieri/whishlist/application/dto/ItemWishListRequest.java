@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
-public class AddItemToWishListRequest {
+public class ItemWishListRequest {
     @NotEmpty
     private String productId;
 }

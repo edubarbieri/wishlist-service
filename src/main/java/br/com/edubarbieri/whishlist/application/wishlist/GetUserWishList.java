@@ -12,12 +12,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class QueryUserWishList {
+public class GetUserWishList {
 
     private WishListReadRepository wishListRepository;
     private ProductRepository productRepository;
 
-    public QueryUserWishList(AbstractRepositoryFactory repositoryFactory) {
+    public GetUserWishList(AbstractRepositoryFactory repositoryFactory) {
         this.wishListRepository = repositoryFactory.createWishListReadRepository();
         this.productRepository = repositoryFactory.createProductRepository();
     }

@@ -22,11 +22,19 @@ Content-Type: application/json
 ##Add item to wishilist
 POST http://localhost:8080/api/user/wishlist
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdWR1YXJkbzIzQGdtYWlsLmNvbSIsImlhdCI6MTYzNTE3NjU3NSwiZXhwIjoxNjM1MTc3NDc1fQ.ruuEuUWWJQgmg8VkI9C36KY22B1hcVKcfPE1HYkYmCI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdWR1YXJkbzIzQGdtYWlsLmNvbSIsImlhdCI6MTYzNTE3OTY0NiwiZXhwIjoxNjM1MTgwNTQ2fQ.ngNeHjKGr-UMip28A9RNmU_NbonzMmQdutCpRPQgj58
 
 {
   "productId": "79b1c283-00ef-6b22-1c8d-b0721999e2f0"
 }
+
+###
+##Add item to wishilist
+GET http://localhost:8080/api/user/wishlist
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdWR1YXJkbzIzQGdtYWlsLmNvbSIsImlhdCI6MTYzNTE3OTY0NiwiZXhwIjoxNjM1MTgwNTQ2fQ.ngNeHjKGr-UMip28A9RNmU_NbonzMmQdutCpRPQgj58
+
+
 
 
 

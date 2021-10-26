@@ -31,7 +31,7 @@ class ProductGatewayTest {
         var productId = "5b7411db-9b78-42e3-a8fd-59fb012783e9";
         ProductResponse productResponse = new ProductResponse();
         productResponse.setId("5b7411db-9b78-42e3-a8fd-59fb012783e9");
-        ResponseEntity response = new ResponseEntity(productResponse, HttpStatus.OK);
+        ResponseEntity<ProductResponse> response = new ResponseEntity<>(productResponse, HttpStatus.OK);
         when(productClient.getProduct(productId)).thenReturn(response);
 
         var product = underTest.findById(productId);
@@ -45,7 +45,7 @@ class ProductGatewayTest {
     @Test
     void shouldReturnEmptyWhenClientReturn404() {
         var productId = "5b7411db-9b78-42e3-a8fd-59fb012783e9";
-        ResponseEntity response = new ResponseEntity(HttpStatus.NOT_FOUND);
+        ResponseEntity<ProductResponse> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         when(productClient.getProduct(productId)).thenReturn(response);
 
         var product = underTest.findById(productId);
