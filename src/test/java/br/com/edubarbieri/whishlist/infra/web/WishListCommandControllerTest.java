@@ -1,13 +1,10 @@
 package br.com.edubarbieri.whishlist.infra.web;
 
 import br.com.edubarbieri.whishlist.application.dto.AddItemToWishListRequest;
-import br.com.edubarbieri.whishlist.application.dto.CreateUserInput;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class WishListCommandControllerTest extends BaseWebTest{
 

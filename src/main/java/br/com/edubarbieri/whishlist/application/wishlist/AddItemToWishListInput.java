@@ -1,4 +1,4 @@
-package br.com.edubarbieri.whishlist.application.dto;
+package br.com.edubarbieri.whishlist.application.wishlist;
 
 import lombok.Getter;
 import lombok.Setter;

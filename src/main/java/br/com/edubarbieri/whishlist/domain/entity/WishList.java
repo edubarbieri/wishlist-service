@@ -2,12 +2,14 @@ package br.com.edubarbieri.whishlist.domain.entity;
 
 import br.com.edubarbieri.whishlist.domain.exception.ProductAlreadyInWishList;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Getter
+@Setter
 public class WishList {
     private String userId;
     private Set<String> productsId;

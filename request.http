@@ -1,0 +1,32 @@
+# Create new User
+POST http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "name": "Eduardo dos Santos",
+  "email": "duduardo23@gmail.com",
+  "password": "teste12",
+  "confirmPassword": "teste12"
+}
+###
+##Login user
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "login": "duduardo23@gmail.com",
+  "password": "teste12"
+}
+
+###
+##Add item to wishilist
+POST http://localhost:8080/api/user/wishlist
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdWR1YXJkbzIzQGdtYWlsLmNvbSIsImlhdCI6MTYzNTE3NjU3NSwiZXhwIjoxNjM1MTc3NDc1fQ.ruuEuUWWJQgmg8VkI9C36KY22B1hcVKcfPE1HYkYmCI
+
+{
+  "productId": "79b1c283-00ef-6b22-1c8d-b0721999e2f0"
+}
+
+
+

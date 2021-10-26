@@ -39,10 +39,9 @@ public class JWTService {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parserBuilder()
+        return Jwts.parser()
                 .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes()))
-                .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 
@@ -59,13 +58,13 @@ public class JWTService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    private boolean isTokenExpired(String token) {
+    private boolean isTokenExpied(String token) {
         return extractExpiration(token).before(new Date());
     }
 
     public boolean validateToken(String token) {
         try {
-            return !isTokenExpired(token);
+            return !isTokenExpied(token);
         } catch (SignatureException e) {
             log.debug("Invalid signature for token {}", token);
         }

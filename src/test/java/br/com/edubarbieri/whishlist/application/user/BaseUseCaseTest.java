@@ -1,5 +1,6 @@
-package br.com.edubarbieri.whishlist.application.usecase;
+package br.com.edubarbieri.whishlist.application.user;
 
+import br.com.edubarbieri.whishlist.application.events.EventRepository;
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
 import br.com.edubarbieri.whishlist.domain.respository.ProductRepository;
 import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
@@ -19,6 +20,8 @@ public abstract class BaseUseCaseTest {
     protected WishListRepository wishListRepository;
     @Mock
     protected AbstractRepositoryFactory repositoryFactory;
+    @Mock
+    protected EventRepository eventRepository;
 
     @BeforeEach
     void setUp() {
@@ -26,5 +29,6 @@ public abstract class BaseUseCaseTest {
         when(repositoryFactory.createProductRepository()).thenReturn(productRepository);
         when(repositoryFactory.createUserRepository()).thenReturn(userRepository);
         when(repositoryFactory.createWishListRepository()).thenReturn(wishListRepository);
+        when(repositoryFactory.createEventRepository()).thenReturn(eventRepository);
     }
 }

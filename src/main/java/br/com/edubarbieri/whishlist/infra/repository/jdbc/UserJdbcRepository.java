@@ -3,6 +3,7 @@ package br.com.edubarbieri.whishlist.infra.repository.jdbc;
 import br.com.edubarbieri.whishlist.domain.entity.User;
 import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,9 +15,11 @@ import java.util.Optional;
 @Transactional
 public class UserJdbcRepository implements UserRepository {
     private JdbcTemplate jdbcTemplate;
+    private PasswordEncoder passwordEncoder;
 
-    public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
+    public UserJdbcRepository(JdbcTemplate jdbcTemplate, PasswordEncoder passwordEncoder) {
         this.jdbcTemplate = jdbcTemplate;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -40,12 +43,13 @@ public class UserJdbcRepository implements UserRepository {
     }
 
     private void insert(User user) {
-        jdbcTemplate.update("insert into ml_user(name, email, password) values (?,?,?)", user.getName(), user.getEmail(), user.getPassword());
+        jdbcTemplate.update("insert into ml_user(name, email, password) values (?,?,?)",
+                user.getName(), user.getEmail(), passwordEncoder.encode(user.getPassword()));
     }
 
     private void update(User user) {
         jdbcTemplate.update("update ml_user set name = ?, email = ?, password = ? where id = ?",
-                user.getName(), user.getEmail(), user.getPassword(), user.getId());
+                user.getName(), user.getEmail(), passwordEncoder.encode(user.getPassword()), user.getId());
     }
 
     @Override

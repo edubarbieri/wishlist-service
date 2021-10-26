@@ -1,4 +1,4 @@
-package br.com.edubarbieri.whishlist.application.usecase;
+package br.com.edubarbieri.whishlist.application.user;
 
 import br.com.edubarbieri.whishlist.domain.entity.User;
 import br.com.edubarbieri.whishlist.domain.exception.DomainException;

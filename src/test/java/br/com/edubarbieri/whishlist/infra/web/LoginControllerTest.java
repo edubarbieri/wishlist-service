@@ -4,6 +4,7 @@ import br.com.edubarbieri.whishlist.application.dto.AuthenticationRequest;
 import br.com.edubarbieri.whishlist.domain.entity.User;
 import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
 import br.com.edubarbieri.whishlist.infra.repository.RepositoryFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,16 +18,23 @@ class LoginControllerTest extends BaseWebTest {
 
     @Autowired
     private RepositoryFactory repositoryFactory;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
 
     @BeforeEach
     void setUp() {
         var userRepository = repositoryFactory.createUserRepository();
         if(userRepository.findByEmail("duduardo23@gmail.com").isEmpty()){
-            var user = new User("Eduardo", "duduardo23@gmail.com", passwordEncoder.encode("teste12"));
+            var user = new User("Eduardo", "duduardo23@gmail.com", "teste12");
             userRepository.save(user);
+        }
+    }
+
+    @AfterEach
+    void tearDown() {
+        var userRepository = repositoryFactory.createUserRepository();
+        var user = userRepository.findByEmail("duduardo23@gmail.com");
+        if(user.isPresent()){
+            userRepository.deleteById(user.get().getId());
         }
     }
 

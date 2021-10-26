@@ -1,6 +1,6 @@
-package br.com.edubarbieri.whishlist.application.usecase;
+package br.com.edubarbieri.whishlist.application.wishlist;
 
-import br.com.edubarbieri.whishlist.application.dto.AddItemToWishListInput;
+import br.com.edubarbieri.whishlist.application.user.BaseUseCaseTest;
 import br.com.edubarbieri.whishlist.domain.entity.Product;
 import br.com.edubarbieri.whishlist.domain.entity.User;
 import br.com.edubarbieri.whishlist.domain.entity.WishList;
@@ -45,6 +45,7 @@ class AddItemToWishListTest extends BaseUseCaseTest {
 
         assertThat(wishList.getProductsId()).contains("product123");
         verify(wishListRepository).save(wishList);
+        verify(eventRepository).publish(any());
     }
 
     @Test
@@ -58,6 +59,7 @@ class AddItemToWishListTest extends BaseUseCaseTest {
         underTest.execute(input);
 
         verify(wishListRepository).save(any());
+        verify(eventRepository).publish(any());
     }
 
     @Test

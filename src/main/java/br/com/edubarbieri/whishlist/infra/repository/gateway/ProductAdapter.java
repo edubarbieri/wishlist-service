@@ -9,6 +9,11 @@ public class ProductAdapter {
     }
 
     public static Product asEntity(ProductResponse response){
-        return new Product(response.getId());
+        var product = new Product(response.getId());
+        product.setPrice(response.getPrice());
+        product.setImage(response.getImage());
+        product.setTitle(response.getTitle());
+        product.setReviewScore(response.getReviewScore());
+        return product;
     }
 }

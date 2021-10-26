@@ -1,6 +1,6 @@
 package br.com.edubarbieri.whishlist.infra.web;
 
-import br.com.edubarbieri.whishlist.application.dto.CreateUserInput;
+import br.com.edubarbieri.whishlist.application.user.CreateUserInput;
 import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

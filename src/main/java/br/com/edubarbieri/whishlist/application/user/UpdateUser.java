@@ -1,8 +1,8 @@
-package br.com.edubarbieri.whishlist.application.usecase;
+package br.com.edubarbieri.whishlist.application.user;
 
-import br.com.edubarbieri.whishlist.application.dto.UpdateUserInput;
 import br.com.edubarbieri.whishlist.domain.entity.User;
 import br.com.edubarbieri.whishlist.domain.exception.EmailAlreadyRegistered;
+import br.com.edubarbieri.whishlist.domain.exception.PasswordNotMatch;
 import br.com.edubarbieri.whishlist.domain.exception.UserNotFound;
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
 import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
@@ -21,8 +21,12 @@ public class UpdateUser {
         if (userByEmail.isPresent() && !user.getId().equals(userByEmail.get().getId())) {
             throw new EmailAlreadyRegistered(input.getEmail());
         }
+        if(!input.getPassword().equals(input.getConfirmPassword())){
+            throw new PasswordNotMatch();
+        }
         user.setEmail(input.getEmail());
         user.setName(input.getName());
+        user.setPassword(input.getPassword());
         this.userRepository.save(user);
     }
 

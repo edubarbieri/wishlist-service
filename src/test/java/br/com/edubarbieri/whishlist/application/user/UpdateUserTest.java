@@ -1,6 +1,5 @@
-package br.com.edubarbieri.whishlist.application.usecase;
+package br.com.edubarbieri.whishlist.application.user;
 
-import br.com.edubarbieri.whishlist.application.dto.UpdateUserInput;
 import br.com.edubarbieri.whishlist.domain.entity.User;
 import br.com.edubarbieri.whishlist.domain.exception.DomainException;
 import br.com.edubarbieri.whishlist.domain.exception.EmailAlreadyRegistered;
@@ -26,7 +25,7 @@ class UpdateUserTest extends BaseUseCaseTest {
     }
     @Test
     void shouldNotUpdateUserThatNotExists() {
-        var updateUserInput = new UpdateUserInput("user2", "Jorge Santos Silva", "test@test.com");
+        var updateUserInput = new UpdateUserInput("user2", "Jorge Santos Silva", "test@test.com", "teste12", "teste12");
         try {
             underTest.execute(updateUserInput);
             fail("Could not update user that not exists");
@@ -37,7 +36,7 @@ class UpdateUserTest extends BaseUseCaseTest {
 
     @Test
     void shouldNotUpdateEmailUsedByOtherUser() {
-        var updateUserInput = new UpdateUserInput("user2", "Jorge Santos Silva", "test@test.com");
+        var updateUserInput = new UpdateUserInput("user2", "Jorge Santos Silva", "test@test.com", "teste12", "teste12");
         when(userRepository.findById("user2"))
                 .thenReturn(Optional.of(new User("user2", "Jorge Santos", "jorge.santos@test.com", "password")));
         when(userRepository.findByEmail("test@test.com"))
@@ -51,7 +50,7 @@ class UpdateUserTest extends BaseUseCaseTest {
     }
     @Test
     void shouldUpdateUser() {
-        var updateUserInput = new UpdateUserInput("user2", "Jorge Santos Silva", "test@test.com");
+        var updateUserInput = new UpdateUserInput("user2", "Jorge Santos Silva", "test@test.com", "teste12", "teste12");
         var user = new User("user2", "Jorge Santos", "jorge.santos@test.com", "password");
         when(userRepository.findById("user2"))
                 .thenReturn(Optional.of(user));

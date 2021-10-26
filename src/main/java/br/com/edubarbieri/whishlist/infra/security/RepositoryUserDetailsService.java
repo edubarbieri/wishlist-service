@@ -21,6 +21,6 @@ public class RepositoryUserDetailsService implements org.springframework.securit
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("Not found user with email " + username);
         }
-        return new AuthUserDetails(user.get().getEmail(), user.get().getPassword());
+        return new AuthUserDetails(user.get().getId(), user.get().getEmail(), user.get().getPassword());
     }
 }

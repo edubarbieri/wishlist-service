@@ -8,10 +8,12 @@ import java.util.Collections;
 
 public class AuthUserDetails implements UserDetails {
 
+    private String userId;
     private String email;
     private String password;
 
-    public AuthUserDetails(String email, String password) {
+    public AuthUserDetails(String userId, String email, String password) {
+        this.userId = userId;
         this.email = email;
         this.password = password;
     }
@@ -49,5 +51,9 @@ public class AuthUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }
