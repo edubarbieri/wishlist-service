@@ -1,7 +1,7 @@
 package br.com.edubarbieri.whishlist.infra.repository.jdbc;
 
 import br.com.edubarbieri.whishlist.domain.entity.User;
-import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
+import br.com.edubarbieri.whishlist.domain.repository.UserRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

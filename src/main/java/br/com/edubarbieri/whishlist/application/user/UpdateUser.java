@@ -5,7 +5,7 @@ import br.com.edubarbieri.whishlist.domain.exception.EmailAlreadyRegistered;
 import br.com.edubarbieri.whishlist.domain.exception.PasswordNotMatch;
 import br.com.edubarbieri.whishlist.domain.exception.UserNotFound;
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
-import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
+import br.com.edubarbieri.whishlist.domain.repository.UserRepository;
 
 public class UpdateUser {
 

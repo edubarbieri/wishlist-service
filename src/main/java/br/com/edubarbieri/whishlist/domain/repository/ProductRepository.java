@@ -1,4 +1,4 @@
-package br.com.edubarbieri.whishlist.domain.respository;
+package br.com.edubarbieri.whishlist.domain.repository;
 
 import br.com.edubarbieri.whishlist.domain.entity.Product;
 

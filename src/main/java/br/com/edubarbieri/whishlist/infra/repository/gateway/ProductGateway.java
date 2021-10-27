@@ -2,7 +2,7 @@ package br.com.edubarbieri.whishlist.infra.repository.gateway;
 
 
 import br.com.edubarbieri.whishlist.domain.entity.Product;
-import br.com.edubarbieri.whishlist.domain.respository.ProductRepository;
+import br.com.edubarbieri.whishlist.domain.repository.ProductRepository;
 import br.com.edubarbieri.whishlist.infra.clients.ProductServiceClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;

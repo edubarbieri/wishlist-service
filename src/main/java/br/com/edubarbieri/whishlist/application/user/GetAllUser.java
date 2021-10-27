@@ -1,7 +1,7 @@
 package br.com.edubarbieri.whishlist.application.user;
 
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
-import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
+import br.com.edubarbieri.whishlist.domain.repository.UserRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

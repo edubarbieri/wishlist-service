@@ -5,9 +5,9 @@ import br.com.edubarbieri.whishlist.domain.entity.WishList;
 import br.com.edubarbieri.whishlist.domain.exception.ProductNotFound;
 import br.com.edubarbieri.whishlist.domain.exception.UserNotFound;
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
-import br.com.edubarbieri.whishlist.domain.respository.ProductRepository;
-import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
-import br.com.edubarbieri.whishlist.domain.respository.WishListRepository;
+import br.com.edubarbieri.whishlist.domain.repository.ProductRepository;
+import br.com.edubarbieri.whishlist.domain.repository.UserRepository;
+import br.com.edubarbieri.whishlist.domain.repository.WishListRepository;
 
 public class AddItemToWishList {
 

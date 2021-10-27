@@ -1,7 +1,7 @@
 package br.com.edubarbieri.whishlist.infra.repository.mongodb;
 
 import br.com.edubarbieri.whishlist.domain.entity.WishList;
-import br.com.edubarbieri.whishlist.domain.respository.WishListReadRepository;
+import br.com.edubarbieri.whishlist.domain.repository.WishListReadRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

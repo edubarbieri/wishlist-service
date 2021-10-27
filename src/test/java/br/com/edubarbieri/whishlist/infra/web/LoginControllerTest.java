@@ -2,15 +2,12 @@ package br.com.edubarbieri.whishlist.infra.web;
 
 import br.com.edubarbieri.whishlist.application.dto.AuthenticationRequest;
 import br.com.edubarbieri.whishlist.domain.entity.User;
-import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
 import br.com.edubarbieri.whishlist.infra.repository.RepositoryFactory;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 

@@ -1,7 +1,7 @@
 package br.com.edubarbieri.whishlist.infra.repository.jdbc;
 
 import br.com.edubarbieri.whishlist.domain.entity.WishList;
-import br.com.edubarbieri.whishlist.domain.respository.WishListRepository;
+import br.com.edubarbieri.whishlist.domain.repository.WishListRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

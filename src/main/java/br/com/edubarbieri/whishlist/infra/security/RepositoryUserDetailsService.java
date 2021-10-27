@@ -1,7 +1,7 @@
 package br.com.edubarbieri.whishlist.infra.security;
 
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
-import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
+import br.com.edubarbieri.whishlist.domain.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;

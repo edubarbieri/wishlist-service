@@ -2,8 +2,8 @@ package br.com.edubarbieri.whishlist.application.wishlist;
 
 import br.com.edubarbieri.whishlist.application.dto.QueryWishListResultItem;
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
-import br.com.edubarbieri.whishlist.domain.respository.ProductRepository;
-import br.com.edubarbieri.whishlist.domain.respository.WishListReadRepository;
+import br.com.edubarbieri.whishlist.domain.repository.ProductRepository;
+import br.com.edubarbieri.whishlist.domain.repository.WishListReadRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
