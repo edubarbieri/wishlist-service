@@ -15,7 +15,7 @@ public class CreateUser {
     }
 
     public void execute(CreateUserInput input) {
-        if (userRepository.findByEmail(input.getEmail()).isPresent()) {
+        if (this.userRepository.findByEmail(input.getEmail()).isPresent()) {
             throw new EmailAlreadyRegistered(input.getEmail());
         }
         if (!input.getPassword().equals(input.getConfirmPassword())) {

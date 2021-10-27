@@ -28,17 +28,17 @@ public class AddItemToWishList {
         if(this.userRepository.findById(input.getUserId()).isEmpty()){
             throw new UserNotFound(input.getUserId());
         }
-        if (productRepository.findById(input.getProductId()).isEmpty()) {
+        if (this.productRepository.findById(input.getProductId()).isEmpty()) {
             throw new ProductNotFound(input.getProductId());
         }
         var userWishList = getUserWishList(input.getUserId());
         userWishList.addProduct(input.getProductId());
-        wishListRepository.save(userWishList);
-        eventRepository.publish(new WishListUpdatedEvent(userWishList.getUserId(), userWishList.getProductsId()));
+        this.wishListRepository.save(userWishList);
+        this.eventRepository.publish(new WishListUpdatedEvent(userWishList.getUserId(), userWishList.getProductsId()));
     }
 
     private WishList getUserWishList(String userId) {
-        return wishListRepository
+        return this.wishListRepository
                 .findByUserId(userId)
                 .orElse(new WishList(userId));
     }

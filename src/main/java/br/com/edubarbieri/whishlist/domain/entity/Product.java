@@ -14,7 +14,6 @@ public class Product {
     private BigDecimal price;
     private BigDecimal reviewScore;
 
-
     public Product(String id) {
         this.id = id;
     }

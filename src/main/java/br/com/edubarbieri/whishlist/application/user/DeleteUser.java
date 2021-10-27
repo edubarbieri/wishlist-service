@@ -13,7 +13,7 @@ public class DeleteUser {
     }
 
     public void execute(String userId) {
-        if (userRepository.findById(userId).isEmpty()) {
+        if (this.userRepository.findById(userId).isEmpty()) {
             throw new UserNotFound(userId);
         }
         this.userRepository.deleteById(userId);

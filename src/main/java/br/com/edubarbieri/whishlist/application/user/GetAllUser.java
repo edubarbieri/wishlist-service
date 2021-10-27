@@ -1,6 +1,5 @@
 package br.com.edubarbieri.whishlist.application.user;
 
-import br.com.edubarbieri.whishlist.domain.exception.UserNotFound;
 import br.com.edubarbieri.whishlist.domain.factory.AbstractRepositoryFactory;
 import br.com.edubarbieri.whishlist.domain.respository.UserRepository;
 
@@ -14,8 +13,9 @@ public class GetAllUser {
     public GetAllUser(AbstractRepositoryFactory repositoryFactory) {
         this.userRepository = repositoryFactory.createUserRepository();
     }
+
     public List<GetUserOutput> execute() {
-        return userRepository.findAll()
+        return this.userRepository.findAll()
                 .stream()
                 .map(user -> new GetUserOutput(user.getId(), user.getName(), user.getEmail()))
                 .collect(Collectors.toList());

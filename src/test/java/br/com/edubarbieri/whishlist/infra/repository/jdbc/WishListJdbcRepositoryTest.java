@@ -48,6 +48,6 @@ class WishListJdbcRepositoryTest {
 
         var findResult = underTest.findByUserId(userId);
 
-        assertThat(findResult.isEmpty()).isTrue();
+        assertThat(findResult).isEmpty();
     }
 }

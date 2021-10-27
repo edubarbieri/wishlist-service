@@ -1,5 +1,5 @@
-@baseUrl = http://docker:8080
-@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdWR1YXJkbzIzQGdtYWlsLmNvbSIsImlhdCI6MTYzNTI3OTkxMCwiZXhwIjoxNjM1MjgzNTEwfQ._V-UM7Ozrv-lVJvEoVJI55VvWThHKEBN02zhgOSEYQ0
+@baseUrl = http://localhost:8080
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdWR1YXJkbzIzQGdtYWlsLmNvbSIsImlhdCI6MTYzNTI4ODkzMSwiZXhwIjoxNjM1MjkyNTMxfQ.usNlhIqQRShUtwKWM9GZrmnceQ-2v0kzhVHzwS7CY2E
 
 # Create new User
 POST {{baseUrl}}/api/user
@@ -12,7 +12,7 @@ Content-Type: application/json
   "confirmPassword": "teste12"
 }
 ###
-##Login user
+# Login user
 POST {{baseUrl}}/login
 Content-Type: application/json
 
@@ -21,19 +21,19 @@ Content-Type: application/json
   "password": "teste12"
 }
 ###
-## Get All user
+# Get All user
 GET {{baseUrl}}/api/user
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ###
-## Get User By id
-GET {{baseUrl}}/api/user/17f6281e-26f6-43e7-b98c-39c60b212ac7
+# Get User By id
+GET {{baseUrl}}/api/user/0cdebc8f-5858-4978-9aa5-eee373ff5103
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ###
-##Add item to wishilist
+# Add item to wishlist
 POST {{baseUrl}}/api/user/wishlist
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -42,7 +42,7 @@ Authorization: Bearer {{token}}
   "productId": "79b1c283-00ef-6b22-1c8d-b0721999e2f0"
 }
 ###
-##Add item 2to wishilist
+# Add item 2 to wishlist
 POST {{baseUrl}}/api/user/wishlist
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -52,12 +52,21 @@ Authorization: Bearer {{token}}
 }
 
 ###
-##Add item to wishilist
+# Get user wishlist
 GET {{baseUrl}}/api/user/wishlist
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 
+###
+# Remove item wishlist
+DELETE {{baseUrl}}/api/user/wishlist
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "productId": "d6d9ab20-ef42-bab5-9b6e-6dc90d981472"
+}
 
 
 

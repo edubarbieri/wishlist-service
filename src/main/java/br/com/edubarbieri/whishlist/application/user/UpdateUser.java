@@ -17,7 +17,7 @@ public class UpdateUser {
 
     public void execute(UpdateUserInput input) {
         var user = getUser(input);
-        var userByEmail = userRepository.findByEmail(input.getEmail());
+        var userByEmail = this.userRepository.findByEmail(input.getEmail());
         if (userByEmail.isPresent() && !user.getId().equals(userByEmail.get().getId())) {
             throw new EmailAlreadyRegistered(input.getEmail());
         }

@@ -3,7 +3,6 @@ package br.com.edubarbieri.whishlist.application.user;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.CodePointLength;
 
 @Getter
 @Setter

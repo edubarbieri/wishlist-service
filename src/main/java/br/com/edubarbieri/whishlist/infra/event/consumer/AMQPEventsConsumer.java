@@ -30,18 +30,18 @@ public class AMQPEventsConsumer {
             var event = objectMapper.readValue(message.getBody(), WishListUpdatedEvent.class);
             log.info("processing wishlist {} update event", (event.getUserId()));
 
-            Optional<WishListDoc> wishList = wishListDataRepository.findById(event.getUserId());
-            if (wishList.isPresent()) {
-                wishList.get().setProductIds(event.getProductsIds());
-                wishListDataRepository.save(wishList.get());
-            } else {
-                WishListDoc doc = new WishListDoc();
-                doc.setId(event.getUserId());
-                doc.setProductIds(event.getProductsIds());
-                wishListDataRepository.save(doc);
-            }
+            var wishlistDoc = getWishlistDoc(event.getUserId());
+            wishlistDoc.setProductIds(event.getProductsIds());
+            wishListDataRepository.save(wishlistDoc);
         } catch (IOException e) {
             log.error("error consuming update wishlist message", e);
         }
     }
+
+    private WishListDoc getWishlistDoc(String userId){
+        return wishListDataRepository
+                .findById(userId)
+                .orElse(new WishListDoc(userId));
+    }
+
 }

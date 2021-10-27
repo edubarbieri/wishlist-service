@@ -29,7 +29,7 @@ public class GetUserWishList {
         }
         return userWishList.get()
                 .getProductsId().stream()
-                .map(productId -> productRepository.findById(productId))
+                .map(productId -> this.productRepository.findById(productId))
                 .filter(Optional::isPresent)
                 .map(product -> new QueryWishListResultItem(product.get()))
                 .collect(Collectors.toList());

@@ -15,4 +15,10 @@ public class WishListDoc {
     @Id
     private String id;
     private Set<String> productIds;
+
+    public WishListDoc(String id) {
+        this.id = id;
+    }
+    public WishListDoc() {
+    }
 }

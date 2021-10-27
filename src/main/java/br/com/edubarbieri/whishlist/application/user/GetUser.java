@@ -12,7 +12,7 @@ public class GetUser {
         this.userRepository = repositoryFactory.createUserRepository();
     }
     public GetUserOutput execute(String userId) {
-        var user = userRepository
+        var user = this.userRepository
                 .findById(userId).orElseThrow(() -> new UserNotFound(userId));
         return new GetUserOutput(user.getId(), user.getName(), user.getEmail());
     }

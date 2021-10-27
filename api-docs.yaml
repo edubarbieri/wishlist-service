@@ -1,0 +1,237 @@
+openapi: 3.0.1
+info:
+  title: WishList Service
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Localhost
+paths:
+  /api/user/{userId}:
+    get:
+      tags:
+      - user-controller
+      operationId: getUser
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetUserOutput'
+    put:
+      tags:
+      - user-controller
+      operationId: updateUser
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserInput'
+        required: true
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags:
+      - user-controller
+      operationId: removeUser
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /login:
+    post:
+      tags:
+      - login-controller
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/user:
+    get:
+      tags:
+      - user-controller
+      operationId: getAllUser
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetUserOutput'
+    post:
+      tags:
+      - user-controller
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserInput'
+        required: true
+      responses:
+        "200":
+          description: OK
+  /api/user/wishlist:
+    get:
+      tags:
+      - wish-list-controller
+      operationId: getWishList
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QueryWishListResultItem'
+    post:
+      tags:
+      - wish-list-controller
+      operationId: addItemInWishList
+      security:
+        - bearerAuth: []      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemWishListRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags:
+      - wish-list-controller
+      operationId: removeItemFromWishList
+      security:
+        - bearerAuth: []      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemWishListRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    UpdateUserInput:
+      required:
+      - confirmPassword
+      - email
+      - name
+      - password
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string
+    AuthenticationRequest:
+      required:
+      - login
+      - password
+      type: object
+      properties:
+        login:
+          type: string
+        password:
+          type: string
+    CreateUserInput:
+      required:
+      - confirmPassword
+      - email
+      - name
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string
+    ItemWishListRequest:
+      required:
+      - productId
+      type: object
+      properties:
+        productId:
+          type: string
+    GetUserOutput:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+    QueryWishListResultItem:
+      type: object
+      properties:
+        productId:
+          type: string
+        title:
+          type: string
+        image:
+          type: string
+        price:
+          type: number
+        reviewScore:
+          type: number
